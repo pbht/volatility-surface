@@ -1,9 +1,10 @@
+mod types;
 mod utils;
 
 use anyhow::Result;
 
 // Testing
-use utils::RawDeribitOption;
+use types::RawDeribitOption;
 
 fn main() -> Result<()> {
     let raw_option = RawDeribitOption {
