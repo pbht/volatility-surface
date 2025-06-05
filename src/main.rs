@@ -3,11 +3,15 @@ mod utils;
 use anyhow::Result;
 
 // Testing
-use utils::DeribitOption;
+use utils::RawDeribitOption;
 
 fn main() -> Result<()> {
-    let option = "BTC-05JUN25-120000-C".parse::<DeribitOption>()?;
-    println!("{:?}", option);
+    let raw_option = RawDeribitOption {
+        iv: 0.1,
+        instrument_name: "BTC-05JUN25-120000-C".to_string(),
+    };
+
+    println!("{:?}", raw_option.into_full()?);
 
     Ok(())
 }
