@@ -17,7 +17,11 @@ The function that allows us to take in each raw option data element from the lis
 - [ ] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
 - [ ] Websocket integration
 - [ ] Differentiate between puts and calls
-- [ ] Complete Delaunay triangulation
-- [ ] Render surface
+- [x] Complete Delaunay triangulation
+- [x] Render surface
 - [ ] Efficient inclusion of new data
 - [ ] Refactor
+
+# Results
+![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
+Here we have the first render of the test data. The render is highly fragmented and I couldn't manage to fix this despite having added anti-aliasing and having used over 1,000 datapoints. The next step may be to have a smoothing function removed some the jaggedy edges.
