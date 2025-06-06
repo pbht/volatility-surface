@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 anyhow = "1.0.98"
 chrono = "0.4.41"
+delaunator = "1.0.2"

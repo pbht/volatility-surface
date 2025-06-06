@@ -43,3 +43,10 @@ pub struct FullDeribitOption {
     pub side: OptionSide,
     pub iv: f64,
 }
+
+#[derive(Debug, Clone, PartialEq)]
+pub struct DeribitDataPoint {
+    pub x: f64,
+    pub y: f64,
+    pub z: f32,
+}

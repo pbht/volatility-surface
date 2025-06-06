@@ -1,8 +1,10 @@
 use anyhow::{anyhow, Result};
-use chrono::NaiveDate;
+use chrono::{Local, NaiveDate};
 use std::str::FromStr;
 
-use crate::types::{DeribitOptionStringObject, FullDeribitOption, OptionSide, RawDeribitOption};
+use crate::types::{
+    DeribitDataPoint, DeribitOptionStringObject, FullDeribitOption, OptionSide, RawDeribitOption,
+};
 
 impl RawDeribitOption {
     pub fn into_full(self) -> Result<FullDeribitOption> {
@@ -47,6 +49,19 @@ impl FromStr for DeribitOptionStringObject {
                 })
             }
             _ => Err(anyhow!("Invalid option format: {}", s)),
+        }
+    }
+}
+
+impl FullDeribitOption {
+    pub fn into_data_point(self) -> DeribitDataPoint {
+        let today = Local::now().date_naive();
+        let converted_date = (self.expiry - today).num_days() as f64;
+
+        DeribitDataPoint {
+            x: self.strike,
+            y: converted_date,
+            z: self.iv as f32,
         }
     }
 }
