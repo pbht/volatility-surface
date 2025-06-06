@@ -85,8 +85,7 @@ fn main() -> Result<()> {
         Vector3::new(norm, 0.0, 1.0 - norm)
     }
 
-    let vertex_colours: Vec<Vector3<f32>> =
-        point_map.iter().map(|(_, z)| iv_to_colour(*z)).collect();
+    let vertex_colours: Vec<Vector3<f32>> = point_map.values().map(|z| iv_to_colour(*z)).collect();
 
     let mesh = Mesh::new(
         positions.clone(),    // Vec<Point3<f32>>
