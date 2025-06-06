@@ -12,3 +12,11 @@ Fortunately, Deribit gives us this data immediately in the API call. Our job wil
 So far I have implemented the logic to decode the instrument_name string from the Deribit websocket into a usable format. The main function of this is that it will allow us to immediately extract expiry dates for each option and determine whether it is a put or call using our enum. 
 
 The function that allows us to take in each raw option data element from the list and convert into a usable format is ready.
+
+# Todo
+- [ ] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
+- [ ] Websocket integration
+- [ ] Complete Delaunay triangulation
+- [ ] Render surface
+- [ ] Efficient inclusion of new data
+- [ ] Refactor
