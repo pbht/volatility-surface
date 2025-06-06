@@ -28,6 +28,8 @@ fn main() -> Result<()> {
         },
     ];
 
+    // Business logic
+
     let deribit_points: Vec<DeribitDataPoint> = raw_options
         .into_iter()
         .map(|point| point.into_full().unwrap().into_data_point())
@@ -43,6 +45,10 @@ fn main() -> Result<()> {
 
     let triangulation = delaunator::triangulate(&delaunay_points);
 
+    assert!(
+        triangulation.triangles.len() % 3 == 0,
+        "Triangulation is not valid"
+    );
     println!("Triangulation: {:?}", triangulation.triangles);
 
     Ok(())
