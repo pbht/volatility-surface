@@ -1,4 +1,5 @@
 use chrono::NaiveDate;
+use serde::Deserialize;
 
 // Not explicitly used just yet, but may be useful in the future.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -9,17 +10,17 @@ pub enum OptionSide {
 
 // This is the raw data that we receive from the Deribit websocket API over the course of (potentially) multiple vectors.
 // We will coerce the websocket response into this struct.
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct DeribitWebSocketMessage {
     pub params: RawDeribitOptionData,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct RawDeribitOptionData {
-    data: Vec<RawDeribitOption>,
+    pub data: Vec<RawDeribitOption>,
 }
 
-#[derive(Debug, Clone, PartialEq)]
+#[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct RawDeribitOption {
     pub iv: f64,
     pub instrument_name: String,

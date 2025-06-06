@@ -16,6 +16,7 @@ The function that allows us to take in each raw option data element from the lis
 # Todo
 - [ ] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
 - [ ] Websocket integration
+- [ ] Differentiate between puts and calls
 - [ ] Complete Delaunay triangulation
 - [ ] Render surface
 - [ ] Efficient inclusion of new data
