@@ -9,6 +9,7 @@ use types::RawDeribitOption;
 use crate::types::DeribitDataPoint;
 
 fn main() -> Result<()> {
+    // Define test data
     let raw_options = vec![
         RawDeribitOption {
             iv: 0.1,
