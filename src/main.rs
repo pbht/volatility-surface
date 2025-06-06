@@ -14,8 +14,9 @@ use crate::types::{DeribitDataPoint, DeribitWebSocketMessage};
 fn main() -> Result<()> {
     // Business logic
 
-    let raw_options =
-        serde_json::from_str::<DeribitWebSocketMessage>(include_str!("../test_data.json"))?;
+    let raw_options = serde_json::from_str::<DeribitWebSocketMessage>(include_str!(
+        "../resources/test_data.json"
+    ))?;
 
     let deribit_points: Vec<DeribitDataPoint> = raw_options
         .params
