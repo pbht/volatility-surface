@@ -25,24 +25,11 @@ fn main() -> Result<()> {
         .map(|point| point.into_full().unwrap().into_data_point())
         .collect();
 
-    let max_x = deribit_points
+    let (max_x, max_y, max_z) = deribit_points
         .iter()
-        .map(|p| OrderedFloat(p.x as f32))
-        .max()
-        .unwrap()
-        .0;
-    let max_y = deribit_points
-        .iter()
-        .map(|p| OrderedFloat(p.y as f32))
-        .max()
-        .unwrap()
-        .0;
-    let max_z = deribit_points
-        .iter()
-        .map(|p| OrderedFloat(p.z))
-        .max()
-        .unwrap()
-        .0;
+        .fold((0.0f32, 0.0f32, 0.0f32), |(mx, my, mz), p| {
+            (mx.max(p.x as f32), my.max(p.y as f32), mz.max(p.z))
+        });
 
     let mut point_map: HashMap<(OrderedFloat<f32>, OrderedFloat<f32>), f32> = HashMap::new();
     for point in &deribit_points {
@@ -76,7 +63,6 @@ fn main() -> Result<()> {
     let setup = CanvasSetup {
         samples: kiss3d::window::NumSamples::Eight,
         vsync: true,
-        // ..Default::default()
     };
     let mut window = Window::new_with_setup("Volatility Surface Mesh", 800, 600, setup);
     window.set_light(kiss3d::light::Light::StickToCamera);
@@ -89,8 +75,8 @@ fn main() -> Result<()> {
     let vertex_colours: Vec<Vector3<f32>> = point_map.values().map(|z| iv_to_colour(*z)).collect();
 
     let mesh = Mesh::new(
-        positions.clone(),    // Vec<Point3<f32>>
-        indices.clone(),      // Vec<Point3<u16>>
+        positions,            // Vec<Point3<f32>>
+        indices,              // Vec<Point3<u16>>
         Some(vertex_colours), // Vec<Vector3<f32>>
         None,
         true,
@@ -124,12 +110,7 @@ fn main() -> Result<()> {
             &Point3::new(0.0, 0.0, 1.0),
         );
 
-        // for (i, j) in &edges {
-        //     let a = positions[*i];
-        //     let b = positions[*j];
-        //     window.draw_line(&a, &b, &Point3::new(1.0, 1.0, 1.0));
-        // }
-        mesh_node.recompute_normals();
+        // mesh_node.recompute_normals();
     }
 
     Ok(())
