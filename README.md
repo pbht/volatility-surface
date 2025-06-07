@@ -21,7 +21,8 @@ The function that allows us to take in each raw option data element from the lis
 - [x] Render surface
 - [ ] Efficient inclusion of new data
 - [ ] Refactor
+- [ ] Axes titles and scales
 
 # Results
 ![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
-Here we have the first render of the test data. The render is highly fragmented and I couldn't manage to fix this despite adding anti-aliasing and using over 1,000 datapoints. The next step may be to have a smoothing function.
+Here we have the first render of the test data. The x axis (red) shows strike price, the y axis (green) shows time to expiry, and the z axis (blue) shows implied volatility. The render is highly fragmented and I couldn't manage to fix this despite adding anti-aliasing and using over 1,000 datapoints. The next step may be to have a smoothing function.
