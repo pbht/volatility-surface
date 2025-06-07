@@ -24,4 +24,4 @@ The function that allows us to take in each raw option data element from the lis
 
 # Results
 ![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
-Here we have the first render of the test data. The render is highly fragmented and I couldn't manage to fix this despite having added anti-aliasing and having used over 1,000 datapoints. The next step may be to have a smoothing function removed some the jaggedy edges.
+Here we have the first render of the test data. The render is highly fragmented and I couldn't manage to fix this despite adding anti-aliasing and using over 1,000 datapoints. The next step may be to have a smoothing function.
