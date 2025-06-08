@@ -24,6 +24,7 @@ The function that allows us to take in each raw option data element from the lis
 - [ ] Axes titles and scales
 - [ ] Smoothing
 - [ ] (Long-term) integrate this render into a web application and host it for easy viewing (could be an interesting introduction to WASM)
+- [ ] Fix scale so that subsequent frames are comparable
 
 # Results
 ![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
