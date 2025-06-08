@@ -4,11 +4,10 @@ mod types;
 mod utils;
 
 use anyhow::Result;
-use kiss3d::camera::ArcBall;
 use std::{cell::RefCell, rc::Rc};
 
-use kiss3d::nalgebra::{Point3, Unit, Vector3};
-use kiss3d::window::{CanvasSetup, Window};
+use kiss3d::nalgebra::Vector3;
+use kiss3d::window::Window;
 
 use crate::plot::construct_mesh;
 use crate::render::Render;
