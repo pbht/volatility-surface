@@ -19,14 +19,14 @@ pub async fn listen_for_deribit_data(tx: mpsc::Sender<Vec<RawDeribitOption>>) ->
     let (mut ws_stream, _) =
         tokio_tungstenite::connect_async("wss://test.deribit.com/ws/api/v2").await?;
     println!("Connected to deribit");
+
     ws_stream
         .send(Message::Text(subscribe_message.to_string().into()))
         .await?;
-    let (_, mut read) = ws_stream.split();
-
     println!("Listening for deribit data");
-    while let Some(message) = read.next().await {
-        let message = message?;
+
+    let (_, mut read) = ws_stream.split();
+    while let Some(Ok(message)) = read.next().await {
         let message = message.to_text()?;
         let message: DeribitWebSocketMessage = serde_json::from_str(message)?;
 

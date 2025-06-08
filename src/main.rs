@@ -22,7 +22,6 @@ async fn main() -> Result<()> {
     let (mut window, mut camera) = Window::window_and_camera_set_up();
 
     let (tx, rx) = mpsc::channel::<Vec<RawDeribitOption>>();
-
     tokio::spawn(async move {
         if let Err(e) = listen_for_deribit_data(tx).await {
             eprintln!("Error: {}", e);
