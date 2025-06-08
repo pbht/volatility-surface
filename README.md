@@ -22,6 +22,8 @@ The function that allows us to take in each raw option data element from the lis
 - [ ] Efficient inclusion of new data
 - [x] Refactor everything from the main function. In theory, I just want this to be the render loop while we pass off data collection and processing to a separate function
 - [ ] Axes titles and scales
+- [ ] Smoothing
+- [ ] (Long-term) integrate this render into a web application and host it for easy viewing (could be an interesting introduction to WASM)
 
 # Results
 ![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
