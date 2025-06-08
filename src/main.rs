@@ -1,3 +1,4 @@
+mod render;
 mod types;
 mod utils;
 
@@ -9,6 +10,7 @@ use kiss3d::nalgebra::{Point3, Vector3};
 use kiss3d::resource::Mesh;
 use kiss3d::window::{CanvasSetup, Window};
 
+use crate::render::Render;
 use crate::types::{DeribitDataPoint, DeribitWebSocketMessage};
 
 fn main() -> Result<()> {
@@ -57,7 +59,7 @@ fn main() -> Result<()> {
     let indices: Vec<Point3<u16>> = triangulation
         .triangles
         .chunks(3)
-        .map(|tri| Point3::new(tri[0] as u16, tri[1] as u16, tri[2] as u16))
+        .map(|triangle| Point3::new(triangle[0] as u16, triangle[1] as u16, triangle[2] as u16))
         .collect();
 
     let setup = CanvasSetup {
@@ -74,41 +76,14 @@ fn main() -> Result<()> {
 
     let vertex_colours: Vec<Vector3<f32>> = point_map.values().map(|z| iv_to_colour(*z)).collect();
 
-    let mesh = Mesh::new(
-        positions,            // Vec<Point3<f32>>
-        indices,              // Vec<Point3<u16>>
-        Some(vertex_colours), // Vec<Vector3<f32>>
-        None,
-        true,
-    );
+    let mesh = Mesh::new(positions, indices, Some(vertex_colours), None, true);
 
     let mut mesh_node = window.add_mesh(Rc::new(RefCell::new(mesh)), Vector3::new(1.0, 1.0, 1.0));
     mesh_node.recompute_normals();
-    // mesh_node.set_color(0.3, 1.0, 1.0);
+    mesh_node.set_color(0.3, 1.0, 1.0);
 
     while window.render() {
-        let origin = Point3::origin();
-
-        // Draw X axis in red (STRIKE)
-        window.draw_line(
-            &origin,
-            &Point3::new(1.0, 0.0, 0.0),
-            &Point3::new(1.0, 0.0, 0.0),
-        );
-
-        // Draw Y axis in green (EXPIRY)
-        window.draw_line(
-            &origin,
-            &Point3::new(0.0, 1.0, 0.0),
-            &Point3::new(0.0, 1.0, 0.0),
-        );
-
-        // Draw Z axis in blue (IV)
-        window.draw_line(
-            &origin,
-            &Point3::new(0.0, 0.0, 1.0),
-            &Point3::new(0.0, 0.0, 1.0),
-        );
+        window.draw_axes();
 
         // mesh_node.recompute_normals();
     }
