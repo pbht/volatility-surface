@@ -12,7 +12,7 @@ pub enum OptionSide {
 // We will coerce the websocket response into this struct.
 #[derive(Debug, Clone, PartialEq, Deserialize)]
 pub struct DeribitWebSocketMessage {
-    pub params: RawDeribitOptionData,
+    pub params: Option<RawDeribitOptionData>,
 }
 
 #[derive(Debug, Clone, PartialEq, Deserialize)]
