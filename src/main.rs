@@ -5,12 +5,8 @@ mod utils;
 mod websocket;
 
 use anyhow::Result;
-use std::sync::mpsc;
-use std::{cell::RefCell, rc::Rc};
-
-use kiss3d::nalgebra::Vector3;
-use kiss3d::scene::SceneNode;
-use kiss3d::window::Window;
+use kiss3d::{nalgebra::Vector3, scene::SceneNode, window::Window};
+use std::{cell::RefCell, rc::Rc, sync::mpsc};
 
 use crate::plot::construct_mesh;
 use crate::render::Render;
