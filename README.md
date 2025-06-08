@@ -14,13 +14,13 @@ So far I have implemented the logic to decode the instrument_name string from th
 The function that allows us to take in each raw option data element from the list and convert into a usable format is ready.
 
 # Todo
-- [ ] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
-- [ ] Websocket integration
+- [x] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
+- [x] Websocket integration
 - [ ] Differentiate between puts and calls
 - [x] Complete Delaunay triangulation
 - [x] Render surface
 - [ ] Efficient inclusion of new data
-- [ ] Refactor everything from the main function. In theory, I just want this to be the render loop while we pass off data collection and processing to a separate function
+- [x] Refactor everything from the main function. In theory, I just want this to be the render loop while we pass off data collection and processing to a separate function
 - [ ] Axes titles and scales
 
 # Results
