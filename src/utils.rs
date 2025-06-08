@@ -7,10 +7,13 @@ use crate::types::{
 };
 
 impl RawDeribitOption {
-    pub fn into_full(self) -> Result<FullDeribitOption> {
-        let option_string = self.instrument_name.parse::<DeribitOptionStringObject>()?;
+    pub fn into_full(self) -> Option<FullDeribitOption> {
+        let option_string = self
+            .instrument_name
+            .parse::<DeribitOptionStringObject>()
+            .ok()?;
 
-        Ok(FullDeribitOption {
+        Some(FullDeribitOption {
             underlying: option_string.underlying,
             expiry: option_string.expiry,
             strike: option_string.strike,

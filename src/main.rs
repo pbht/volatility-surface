@@ -24,7 +24,8 @@ fn main() -> Result<()> {
         .params
         .data
         .into_iter()
-        .map(|point| point.into_full().unwrap().into_data_point())
+        .filter_map(|data_point| data_point.into_full())
+        .map(|option| option.into_data_point())
         .collect();
 
     let mut window = Window::new_with_setup(
