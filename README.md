@@ -19,7 +19,7 @@ The function that allows us to take in each raw option data element from the lis
 - [ ] Differentiate between puts and calls
 - [x] Complete Delaunay triangulation
 - [x] Render surface
-- [ ] Efficient inclusion of new data
+- [x] Maintain persistent state, edit only necessary points 
 - [x] Refactor everything from the main function. In theory, I just want this to be the render loop while we pass off data collection and processing to a separate function
 - [ ] Axes titles and scales
 - [ ] Smoothing
