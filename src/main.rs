@@ -8,7 +8,7 @@ use anyhow::Result;
 use kiss3d::{nalgebra::Vector3, scene::SceneNode, window::Window};
 use std::{cell::RefCell, rc::Rc, sync::mpsc};
 
-use crate::plot::construct_mesh;
+use crate::plot::State;
 use crate::render::Render;
 use crate::types::{DeribitDataPoint, RawDeribitOption};
 use crate::websocket::listen_for_deribit_data;
@@ -27,19 +27,22 @@ async fn main() -> Result<()> {
     let mut current_node: Option<SceneNode> = None;
     window.set_light(kiss3d::light::Light::StickToCamera);
 
+    let mut state = State::new();
+
     while window.render_with_camera(&mut camera) {
         window.draw_axes();
 
         while let Ok(raw_options) = rx.try_recv() {
             println!("Number of raw options: {}", raw_options.len());
-
+            println!("{:?}", &state);
             let deribit_points: Vec<DeribitDataPoint> = raw_options
                 .into_iter()
                 .filter_map(|data_point| data_point.into_full())
                 .map(|option| option.into_data_point())
                 .collect();
 
-            let mesh = construct_mesh(deribit_points);
+            state.update_state(deribit_points);
+            let mesh = state.construct_mesh();
 
             if let Some(mut old_node) = current_node.take() {
                 window.remove_node(&mut old_node);
