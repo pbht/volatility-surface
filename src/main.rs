@@ -34,7 +34,6 @@ async fn main() -> Result<()> {
 
         while let Ok(raw_options) = rx.try_recv() {
             println!("Number of raw options: {}", raw_options.len());
-            println!("{:?}", &state);
             let deribit_points: Vec<DeribitDataPoint> = raw_options
                 .into_iter()
                 .filter_map(|data_point| data_point.into_full())
