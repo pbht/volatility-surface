@@ -1,7 +1,15 @@
 use chrono::NaiveDate;
+use clap::Parser;
 use serde::Deserialize;
 
-// Not explicitly used just yet, but may be useful in the future.
+#[derive(Parser)]
+pub struct Args {
+    #[arg(long)]
+    pub puts: bool,
+    #[arg(long)]
+    pub calls: bool,
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum OptionSide {
     Call,
