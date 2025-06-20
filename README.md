@@ -14,11 +14,6 @@ Fortunately, Deribit gives us this data immediately in the API call. Our job wil
 3. Build with `cargo build --release`
 4. Run with `./target/release/volatility-surface --puts --calls`. You must include at least one of the `--puts` and `--calls` flags. `--puts` renders a volatility surface for the Deribit put options while `--calls` does the same for call options. Using both flags includes all options.
 
-# Build so far
-So far I have implemented the logic to decode the instrument_name string from the Deribit websocket into a usable format. The main function of this is that it will allow us to immediately extract expiry dates for each option and determine whether it is a put or call using our enum. 
-
-The function that allows us to take in each raw option data element from the list and convert into a usable format is ready.
-
 # Todo
 - [x] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
 - [x] Websocket integration
