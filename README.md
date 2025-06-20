@@ -8,6 +8,12 @@ We will take in a stream of data from the Deribit websocket API and extract some
 
 Fortunately, Deribit gives us this data immediately in the API call. Our job will be to organise and structure the data so that we can easily plot it in 3D. We will then need to render the surface (perhaps using the three-d crate) and ideally host it on a server. I have not worked with 3D plots outside of Python so I anticipate that this will be an interesting project.
 
+# Usage
+1. Clone the repo to use it locally with git clone `https://github.com/pbht/volatility-surface.git`
+2. cd into the repo with `cd arbitrage-timer`
+3. Build with `cargo build --release`
+4. Run with `./target/release/volatility-surface --puts --calls`. You must include at least one of the `--puts` and `--calls` flags. `--puts` renders a volatility surface for the Deribit put options while `--calls` does the same for call options. Using both flags includes all options.
+
 # Build so far
 So far I have implemented the logic to decode the instrument_name string from the Deribit websocket into a usable format. The main function of this is that it will allow us to immediately extract expiry dates for each option and determine whether it is a put or call using our enum. 
 
@@ -16,7 +22,7 @@ The function that allows us to take in each raw option data element from the lis
 # Todo
 - [x] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
 - [x] Websocket integration
-- [ ] Differentiate between puts and calls
+- [x] Differentiate between puts and calls
 - [x] Complete Delaunay triangulation
 - [x] Render surface
 - [x] Maintain persistent state, edit only necessary points 
