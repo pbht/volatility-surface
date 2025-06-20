@@ -1,13 +1,24 @@
+use anyhow::{bail, Result};
 use chrono::NaiveDate;
-use clap::Parser;
+use clap::{ArgAction, Parser};
 use serde::Deserialize;
 
 #[derive(Parser)]
 pub struct Args {
-    #[arg(long)]
+    #[arg(long, action = ArgAction::Set, default_value_t = true)]
     pub puts: bool,
-    #[arg(long)]
+    #[arg(long, action = ArgAction::Set, default_value_t = true)]
     pub calls: bool,
+}
+
+impl Args {
+    pub fn validate(&self) -> Result<()> {
+        if !(self.puts || self.calls) {
+            bail!("At least one of --puts and --calls must be true.");
+        }
+
+        Ok(())
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
