@@ -28,6 +28,7 @@ Fortunately, Deribit gives us this data immediately in the API call. Our job wil
 - [ ] Fix scale so that subsequent frames are comparable
 - [ ] Remove redundant points when plotting puts and calls at the same time
 - [ ] Improve colour scheme
+
 # Results
 ![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
 Here we have the first render of the test data. The x axis (red) shows strike price, the y axis (green) shows time to expiry, and the z axis (blue) shows implied volatility. The render is highly fragmented and I couldn't manage to fix this despite adding anti-aliasing and using over 1,000 datapoints. The next step may be to have a smoothing function.
