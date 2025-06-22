@@ -4,7 +4,7 @@ mod types;
 mod utils;
 mod websocket;
 
-use anyhow::{bail, Result};
+use anyhow::Result;
 use clap::Parser;
 use kiss3d::{nalgebra::Vector3, scene::SceneNode, window::Window};
 use std::{cell::RefCell, rc::Rc, sync::mpsc};
@@ -65,7 +65,7 @@ async fn main() -> Result<()> {
 
                 // Set call surface colour here
                 call_mesh_node.recompute_normals();
-                call_mesh_node.set_color(0.4, 0.7, 1.0);
+                call_mesh_node.set_color(0.0, 0.9, 1.0);
 
                 current_call_node = Some(call_mesh_node);
             }
@@ -93,7 +93,7 @@ async fn main() -> Result<()> {
 
                 // Set put surface colour here
                 put_mesh_node.recompute_normals();
-                put_mesh_node.set_color(1.0, 0.7, 0.4);
+                put_mesh_node.set_color(1.0, 0.2, 0.4);
 
                 current_put_node = Some(put_mesh_node);
             }
