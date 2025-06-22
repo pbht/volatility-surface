@@ -17,7 +17,6 @@ use crate::websocket::listen_for_deribit_data;
 #[tokio::main]
 async fn main() -> Result<()> {
     let args = Args::parse();
-    args.validate()?;
 
     let (mut window, mut camera) = Window::window_and_camera_set_up();
 
