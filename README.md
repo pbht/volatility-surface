@@ -27,7 +27,7 @@ Fortunately, Deribit gives us this data immediately in the API call. Our job wil
 - [ ] (Long-term) integrate this render into a web application and host it for easy viewing (could be an interesting introduction to WASM)
 - [ ] Fix scale so that subsequent frames are comparable
 - [ ] Remove redundant points when plotting puts and calls at the same time
-- [ ] Improve colour scheme
+- [x] Improve colour scheme
 
 # Results
 ![BTC Volatility Surface Render 1](resources/BTC-volatility-surface-render-1.png) \
