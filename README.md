@@ -12,7 +12,7 @@ Fortunately, Deribit gives us this data immediately in the API call. Our job wil
 1. Clone the repo to use it locally with git clone `https://github.com/pbht/volatility-surface.git`
 2. cd into the repo with `cd arbitrage-timer`
 3. Build with `cargo build --release`
-4. Run with `./target/release/volatility-surface`. You can disable either the puts or calls by using the `--puts=false` or `--calls=false` flags
+4. Run with `./target/release/volatility-surface`. You can disable either the puts or calls by using the `--puts=false` or `--calls=false` flags. Setting both to false will render empty axes
 
 # Todo
 - [x] Actual error handling - we don't want to rely on .unwrap() where it can be avoided
